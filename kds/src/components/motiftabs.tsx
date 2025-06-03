@@ -1,17 +1,17 @@
-import { useState } from "react"
-import VisualAlignment from "./tabs/VisualAlignment"
-import SemanticAnalysis from "./tabs/SemanticAnalysis"
-import CompatibilityAnalysis from "./tabs/CompatibilityAnalysis"
-import AnalysisSummary from "./tabs/AnalysisSummary"
-import type { AnalysisResult } from "@/types/types"
+import { useState } from "react";
+import VisualAlignment from "./tabs/VisualAlignment";
+import SemanticAnalysis from "./tabs/SemanticAnalysis";
+import CompatibilityAnalysis from "./tabs/CompatibilityAnalysis";
+import AnalysisSummary from "./tabs/AnalysisSummary";
+import type { AnalysisResult } from "@/types/types";
 
 interface MotifTabsProps {
-  analysis: AnalysisResult
-  tssPosition: number
+  analysis: AnalysisResult;
+  tssPosition: number;
 }
 
 export default function MotifTabs({ analysis, tssPosition }: MotifTabsProps) {
-  const [activeTab, setActiveTab] = useState("Visual Alignment")
+  const [activeTab, setActiveTab] = useState("Visual Alignment");
 
   const {
     sequence1_motifs,
@@ -19,16 +19,21 @@ export default function MotifTabs({ analysis, tssPosition }: MotifTabsProps) {
     shared_motifs,
     family_matches,
     overall_compatibility,
-  } = analysis
+  } = analysis;
 
   // Estimate sequence length based on motif ends
-  const seq1Length = Math.max(...sequence1_motifs.map((m) => m.end + 1), 100)
-  const seq2Length = Math.max(...sequence2_motifs.map((m) => m.end + 1), 100)
+  const seq1Length = Math.max(...sequence1_motifs.map((m) => m.end + 1), 100);
+  const seq2Length = Math.max(...sequence2_motifs.map((m) => m.end + 1), 100);
 
   return (
     <div className="bg-blue-50 rounded-md p-2 w-full max-w-6xl mx-auto">
       <div className="flex border-b border-gray-300">
-        {["Visual Alignment", "Semantic Analysis", "Compatibility Score", "Summary"].map((tab) => (
+        {[
+          "Visual Alignment",
+          "Semantic Analysis",
+          "Compatibility Score",
+          "Summary",
+        ].map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -72,5 +77,5 @@ export default function MotifTabs({ analysis, tssPosition }: MotifTabsProps) {
         {activeTab === "Summary" && <AnalysisSummary analysis={analysis} />}
       </div>
     </div>
-  )
+  );
 }

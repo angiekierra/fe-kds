@@ -8,20 +8,55 @@ export default function Tool() {
   const [showMotif, setShowMotif] = useState(false);
   const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
   const [tssPosition, setTssPosition] = useState<number>(100);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const motifRef = useRef<HTMLDivElement | null>(null);
 
   const handleTraceSubmit = (seq1: string, seq2: string, tss: number) => {
-    const result = analyzeMotifSequences(seq1, seq2, tss);
-    setAnalysis(result);
-    setTssPosition(tss);
-    setShowMotif(true);
+    setErrorMessage(null);
+
+    const dnaRegex = /^[ACGTNacgtn]*$/;
+    if (!seq1.trim() || !seq2.trim()) {
+      setErrorMessage("Both DNA sequences are required.");
+      return;
+    }
+    if (!dnaRegex.test(seq1)) {
+      setErrorMessage(
+        "DNA Sequence 1 contains invalid characters. Use A, C, G, T, N only."
+      );
+      return;
+    }
+    if (!dnaRegex.test(seq2)) {
+      setErrorMessage(
+        "DNA Sequence 2 contains invalid characters. Use A, C, G, T, N only."
+      );
+      return;
+    }
+
+    if (isNaN(tss) || tss < 0) {
+      setErrorMessage("TSS Position must be a non-negative number.");
+      return;
+    }
+
+    try {
+      const result = analyzeMotifSequences(seq1, seq2, tss);
+      setAnalysis(result);
+      setTssPosition(tss);
+      setShowMotif(true);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      setErrorMessage(
+        error.message || "An unexpected error occurred during analysis."
+      );
+      setShowMotif(false); // Hide results if analysis fails
+      setAnalysis(null);
+    }
   };
 
   useEffect(() => {
     if (showMotif && motifRef.current) {
-      motifRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      motifRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-  }, [showMotif]);
+  }, [showMotif, analysis]);
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
@@ -29,7 +64,7 @@ export default function Tool() {
         <img
           src="dna.png"
           alt="bg-dna-right"
-          className="h-full object-contain"
+          className="h-full object-contain blur-md lg:blur-sm xl:blur-none"
         />
       </div>
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -42,6 +77,11 @@ export default function Tool() {
       >
         <div className="w-full max-w-2xl">
           <TraceForm onSubmit={handleTraceSubmit} />
+          {errorMessage && (
+            <div className="text-red-500 bg-red-100 p-3 rounded-md mt-4 text-center">
+              {errorMessage}
+            </div>
+          )}
         </div>
       </div>
 

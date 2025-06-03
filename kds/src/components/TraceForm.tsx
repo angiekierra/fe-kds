@@ -26,33 +26,41 @@ export default function TraceForm({ onSubmit }: TraceFormProps) {
       >
         <div className="text-center">
           <h1 className="text-5xl font-semibold">Try Our Tool Now!</h1>
-          <p className="text-lg text-gray-400">
-            Enter species names manually to see their compatibility
+          <p className="text-lg text-gray-400 pt-2">
+            Enter sequences manually to see their compatibility
           </p>
         </div>
 
         <div className="w-full space-y-2">
-          <Label htmlFor="species1" className="text-md">Species 1</Label>
+          <Label htmlFor="sequence1" className="text-md">
+            Sequence 1
+          </Label>
           <Textarea
-            id="species1"
+            id="sequence1"
             value={species1}
             onChange={(e) => setSpecies1(e.target.value)}
-            placeholder="Enter Species 1 Name"
+            placeholder="Enter Sequence 1"
+            required
           />
         </div>
 
         <div className="w-full space-y-2">
-          <Label htmlFor="species2" className="text-md">Species 2</Label>
+          <Label htmlFor="sequence2" className="text-md">
+            Sequence 2
+          </Label>
           <Textarea
-            id="species2"
+            id="sequence2"
             value={species2}
             onChange={(e) => setSpecies2(e.target.value)}
-            placeholder="Enter Species 2 Name"
+            placeholder="Enter Sequence 2"
+            required
           />
         </div>
 
         <div className="w-full space-y-2">
-          <Label htmlFor="tssPosition" className="text-md">TSS Position (bp from start)</Label>
+          <Label htmlFor="tssPosition" className="text-md">
+            TSS Position (bp from start)
+          </Label>
           <input
             id="tssPosition"
             type="number"
@@ -66,7 +74,6 @@ export default function TraceForm({ onSubmit }: TraceFormProps) {
         <button
           type="submit"
           className="w-full mt-2 bg-teal-400 p-2 text-white rounded-2xl hover:bg-teal-300"
-          disabled={!species1 || !species2}
         >
           TRACE
         </button>
