@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+
+
+
+@theme{
+  
+
+
+  --font-size-xxl: 2rem; /* 32px */
+  --font-size-xl: 1.75rem; /* 28px */
+  --font-size-lg: 1.5rem; /* 24px */
+  --font-size-md: 1.25rem; /* 20px */
+  --font-size-body: 1.0625rem; /* 17px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-xxs: 0.625rem; /* 10px */
+  --font-size-xxxs: 0.5rem; /* 8px */
+  
+  /* Spacing */
+  --spacing-none: 0;
+  --spacing-xxs: 0.25rem; /* 4px */
+  --spacing-xs: 0.5rem; /* 8px */
+  --spacing-md: 0.75rem; /* 12px */
+  --spacing-lg: 1rem; /* 16px */
+  --spacing-xl: 1.25rem; /* 20px */
+  --spacing-xxl: 1.5rem; /* 24px */
+  --spacing-xxxl: 1.75rem; /* 28px */
+}
+
+:root {
+  /* Font families */
+  --font-family-bold: 'Figtree', sans-serif;
+  --font-family-semibold: 'Figtree', sans-serif;
+  --font-family-medium: 'Figtree', sans-serif;
+  --font-family-regular: 'Figtree', sans-serif;
+  --font-family-light: 'Figtree', sans-serif;
+  --font-family-black: 'Figtree', sans-serif;
+ 
+}
+
+
+body {
+  font-family: var(--font-family-regular);
+  background-color: var(--color-background);
+  color: var(--color-text);
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+
