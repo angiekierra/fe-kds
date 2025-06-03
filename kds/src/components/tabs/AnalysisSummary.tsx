@@ -15,7 +15,7 @@ export default function AnalysisSummary({ analysis }: AnalysisSummaryProps) {
 
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-3 md:grid-cols-3 gap-4">
         <SummaryCard label="Total Motifs" value={totalMotifs} color="blue" />
         <SummaryCard label="Shared Motifs" value={sharedCount} color="green" />
         <SummaryCard
