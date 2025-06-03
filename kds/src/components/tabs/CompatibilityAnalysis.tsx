@@ -51,11 +51,14 @@ export default function CompatibilityAnalysis({
             const relativePos = motif.start - tssPosition;
             const distance = Math.abs(relativePos - motif.canonical_position);
             return (
-              <div key={i} className="p-3 border rounded-lg">
+              <div key={i} className="p-3  border-1 border-gray-300 rounded-lg">
                 <div className="flex justify-between items-start mb-2">
                   <div>
                     <span className="font-medium">{motif.name}</span>
-                    <Badge variant="outline" className="ml-2">
+                    <Badge
+                      variant="outline"
+                      className="ml-2 rounded-full border-gray-300"
+                    >
                       {motif.family}
                     </Badge>
                   </div>

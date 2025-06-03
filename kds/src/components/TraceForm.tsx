@@ -41,6 +41,7 @@ export default function TraceForm({ onSubmit }: TraceFormProps) {
             onChange={(e) => setSpecies1(e.target.value)}
             placeholder="Enter Sequence 1"
             required
+            className="bg-white border-gray-300"
           />
         </div>
 
@@ -54,6 +55,7 @@ export default function TraceForm({ onSubmit }: TraceFormProps) {
             onChange={(e) => setSpecies2(e.target.value)}
             placeholder="Enter Sequence 2"
             required
+            className="bg-white border-gray-300"
           />
         </div>
 
@@ -67,7 +69,7 @@ export default function TraceForm({ onSubmit }: TraceFormProps) {
             min={0}
             value={tssPosition}
             onChange={(e) => setTssPosition(parseInt(e.target.value) || 0)}
-            className="w-full rounded-md border px-3 py-2"
+            className="w-full rounded-md border-1 border-gray-300 bg-white px-3 py-2"
           />
         </div>
 

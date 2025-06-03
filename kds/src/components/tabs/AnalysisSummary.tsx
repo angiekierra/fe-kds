@@ -34,7 +34,7 @@ export default function AnalysisSummary({ analysis }: AnalysisSummaryProps) {
         <h4 className="font-medium">Regulatory Insights & Hypotheses</h4>
 
         {sharedCount > 0 && (
-          <Alert>
+          <Alert className="border-gray-300">
             <Dna className="h-4 w-4" />
             <AlertDescription>
               <strong>Conserved Architecture:</strong> {sharedCount} shared
@@ -45,7 +45,7 @@ export default function AnalysisSummary({ analysis }: AnalysisSummaryProps) {
         )}
 
         {familyMatchCount > 0 && (
-          <Alert>
+          <Alert className="border-gray-300">
             <Brain className="h-4 w-4" />
             <AlertDescription>
               <strong>Functional Redundancy:</strong> {familyMatchCount} TF
@@ -65,7 +65,7 @@ export default function AnalysisSummary({ analysis }: AnalysisSummaryProps) {
         )}
 
         {analysis.overall_compatibility < 0.5 && (
-          <Alert>
+          <Alert className="border-pink-600 bg-pink-50 text-pink-600">
             <AlertCircle className="h-4 w-4" />
             <AlertDescription>
               <strong>Positional Concerns:</strong> Motifs may be too far from
@@ -89,9 +89,9 @@ function SummaryCard({
 }) {
   const bg = {
     blue: "bg-blue-50 text-blue-600",
-    green: "bg-green-50 text-green-600",
-    purple: "bg-purple-50 text-purple-600",
-    orange: "bg-orange-50 text-orange-600",
+    green: "bg-teal-50 text-teal-600",
+    purple: "bg-violet-50 text-violet-600",
+    orange: "bg-amber-50 text-amber-600",
   }[color];
 
   return (

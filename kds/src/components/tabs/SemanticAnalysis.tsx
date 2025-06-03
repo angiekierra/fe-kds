@@ -36,10 +36,18 @@ export default function SemanticAnalysis({
               (m) => m.family === family
             ).length;
             return (
-              <div key={family} className="p-3 border rounded-lg">
+              <div
+                key={family}
+                className="p-3 border border-gray-300 rounded-lg"
+              >
                 <div className="flex justify-between items-center mb-2">
                   <span className="font-medium">{family}</span>
-                  <Badge variant="outline">{seq1Count + seq2Count} total</Badge>
+                  <Badge
+                    variant="outline"
+                    className="bg-amber-100 border-amber-500 text-amber-600 rounded-full"
+                  >
+                    {seq1Count + seq2Count} total
+                  </Badge>
                 </div>
                 <div className="flex gap-2 text-sm text-gray-600">
                   <span>Seq1: {seq1Count}</span>
@@ -54,7 +62,7 @@ export default function SemanticAnalysis({
       {Object.keys(familyMatches).length > 0 && (
         <div>
           <h4 className="font-medium mb-3">Functional Redundancy Detection</h4>
-          <Alert>
+          <Alert className="border-teal-600 bg-teal-50 text-teal-600 ">
             <Brain className="h-4 w-4" />
             <AlertDescription>
               These sequences contain different motifs from the same TF
@@ -64,12 +72,14 @@ export default function SemanticAnalysis({
           </Alert>
           <div className="mt-3 space-y-2">
             {Object.entries(familyMatches).map(([family, matches]) => (
-              <div key={family} className="p-3 bg-blue-50 rounded-lg">
-                <div className="font-medium text-blue-900">{family} Family</div>
-                <div className="text-sm text-blue-700 mt-1">
+              <div key={family} className="p-3 bg-violet-50 rounded-lg">
+                <div className="font-medium text-violet-900">
+                  {family} Family
+                </div>
+                <div className="text-sm text-violet-700 mt-1">
                   Cross-sequence matches: {matches.join(", ")}
                 </div>
-                <div className="text-xs text-blue-600 mt-1">
+                <div className="text-xs text-violet-600 mt-1">
                   → Likely conserved regulatory function despite sequence
                   differences
                 </div>
