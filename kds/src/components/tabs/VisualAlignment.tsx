@@ -19,21 +19,27 @@ export default function VisualAlignment({
   tssPosition,
 }: VisualAlignmentProps) {
   const maxLength = Math.max(sequence1.length, sequence2.length);
-  const scale = 800 / maxLength;
+
+  const baseDisplayWidth = 1500;
+
+  const minBpPx = 5; // Each base pair is at least 5 pixels wide
+  const calculatedScale = Math.max(minBpPx, baseDisplayWidth / maxLength);
+
+  const svgWidth = maxLength * calculatedScale + 100; // 100px padding for labels/end
 
   return (
     <div className="space-y-4">
-      <div className="relative">
-        <svg width="100%" height="300" className="border rounded">
-          {/* Sequence 1 Track */}
+      {/* Wrapper div for horizontal scrolling */}
+      <div className="overflow-x-auto border rounded bg-white p-4">
+        <svg width={svgWidth} height="300">
           <g transform="translate(50, 50)">
-            <text x="0" y="-10" className="text-sm font-medium fill-gray-700">
+            <text x="0" y="-20" className="text-sm font-medium fill-gray-700">
               Sequence 1
             </text>
             <line
               x1={0}
               y1={0}
-              x2={maxLength * scale}
+              x2={maxLength * calculatedScale}
               y2={0}
               stroke="#e5e7eb"
               strokeWidth={2}
@@ -42,9 +48,9 @@ export default function VisualAlignment({
             {seq1Motifs.map((motif, i) => (
               <g key={`seq1-${i}`}>
                 <rect
-                  x={motif.start * scale}
+                  x={motif.start * calculatedScale}
                   y={-15}
-                  width={(motif.end - motif.start + 1) * scale}
+                  width={(motif.end - motif.start + 1) * calculatedScale}
                   height={30}
                   fill={
                     sharedMotifs.includes(motif.name) ? "#3b82f6" : "#6b7280"
@@ -54,8 +60,8 @@ export default function VisualAlignment({
                 />
                 <text
                   x={
-                    motif.start * scale +
-                    ((motif.end - motif.start + 1) * scale) / 2
+                    motif.start * calculatedScale +
+                    ((motif.end - motif.start + 1) * calculatedScale) / 2
                   }
                   y={5}
                   textAnchor="middle"
@@ -69,13 +75,13 @@ export default function VisualAlignment({
 
           {/* Sequence 2 Track */}
           <g transform="translate(50, 200)">
-            <text x="0" y="-10" className="text-sm font-medium fill-gray-700">
+            <text x="0" y="30" className="text-sm font-medium fill-gray-700">
               Sequence 2
             </text>
             <line
               x1={0}
               y1={0}
-              x2={maxLength * scale}
+              x2={maxLength * calculatedScale}
               y2={0}
               stroke="#e5e7eb"
               strokeWidth={2}
@@ -84,9 +90,9 @@ export default function VisualAlignment({
             {seq2Motifs.map((motif, i) => (
               <g key={`seq2-${i}`}>
                 <rect
-                  x={motif.start * scale}
+                  x={motif.start * calculatedScale}
                   y={-15}
-                  width={(motif.end - motif.start + 1) * scale}
+                  width={(motif.end - motif.start + 1) * calculatedScale}
                   height={30}
                   fill={
                     sharedMotifs.includes(motif.name) ? "#3b82f6" : "#6b7280"
@@ -96,8 +102,8 @@ export default function VisualAlignment({
                 />
                 <text
                   x={
-                    motif.start * scale +
-                    ((motif.end - motif.start + 1) * scale) / 2
+                    motif.start * calculatedScale +
+                    ((motif.end - motif.start + 1) * calculatedScale) / 2
                   }
                   y={5}
                   textAnchor="middle"
@@ -110,18 +116,19 @@ export default function VisualAlignment({
           </g>
 
           {/* TSS Marker */}
+          {/* TSS position needs to be scaled and offset by the G group's transform */}
           <line
-            x1={tssPosition * scale + 50}
-            x2={tssPosition * scale + 50}
-            y1={35}
-            y2={265}
+            x1={tssPosition * calculatedScale + 50}
+            x2={tssPosition * calculatedScale + 50}
+            y1={35} /* Adjusted y1 to be slightly above Sequence 1 track */
+            y2={265} /* Adjusted y2 to be slightly below Sequence 2 track */
             stroke="red"
             strokeDasharray="4"
             strokeWidth={1}
           />
           <text
-            x={tssPosition * scale + 50}
-            y={25}
+            x={tssPosition * calculatedScale + 50}
+            y={25} /* Adjusted y to be above the TSS line */
             textAnchor="middle"
             fontSize={10}
             fill="red"
@@ -136,14 +143,14 @@ export default function VisualAlignment({
 
             const x1 =
               50 +
-              motif1.start * scale +
-              ((motif1.end - motif1.start + 1) * scale) / 2;
+              motif1.start * calculatedScale +
+              ((motif1.end - motif1.start + 1) * calculatedScale) / 2;
             const x2 =
               50 +
-              match.start * scale +
-              ((match.end - match.start + 1) * scale) / 2;
-            const y1 = 65;
-            const y2 = 185;
+              match.start * calculatedScale +
+              ((match.end - match.start + 1) * calculatedScale) / 2;
+            const y1 = 65; // Y position for the bottom of Sequence 1 track
+            const y2 = 185; // Y position for the top of Sequence 2 track
 
             return (
               <path
@@ -160,7 +167,7 @@ export default function VisualAlignment({
         </svg>
       </div>
 
-      {/* Motif Lists */}
+      {/* Motif Lists (below the scrollable SVG) */}
       <div className="grid grid-cols-2 gap-4 text-sm">
         <div>
           <h4 className="font-medium mb-2">

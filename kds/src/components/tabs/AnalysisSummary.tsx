@@ -23,11 +23,11 @@ export default function AnalysisSummary({ analysis }: AnalysisSummaryProps) {
           value={familyMatchCount}
           color="purple"
         />
-        <SummaryCard
+        {/* <SummaryCard
           label="Compatibility"
           value={(analysis.overall_compatibility * 100).toFixed(0) + "%"}
           color="orange"
-        />
+        /> */}
       </div>
 
       <div className="space-y-4">

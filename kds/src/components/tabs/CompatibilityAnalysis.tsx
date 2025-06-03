@@ -31,7 +31,7 @@ export default function CompatibilityAnalysis({
 
   return (
     <div className="space-y-6">
-      <div className="text-center p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg">
+      {/* <div className="text-center p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg">
         <div className="text-3xl font-bold mb-2 text-gray-900">
           {(overallScore * 100).toFixed(1)}%
         </div>
@@ -42,7 +42,7 @@ export default function CompatibilityAnalysis({
         <div className={`mt-2 font-medium ${getScoreColor(overallScore)}`}>
           {getScoreLabel(overallScore)} Compatibility
         </div>
-      </div>
+      </div> */}
 
       <div>
         <h4 className="font-medium mb-3">Positional Compatibility Analysis</h4>
