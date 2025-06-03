@@ -1,24 +1,25 @@
 import { useState } from "react";
 import { Label } from "@/components/ui/label";
-import CustomSelect from "./customSelect";
+import { Textarea } from "@/components/ui/textarea";
 
-const speciesOptions = [
-  { label: "Species A", value: "speciesA" },
-  { label: "Species B", value: "speciesB" },
-  { label: "Species C", value: "speciesC" },
-];
+export type TraceFormProps = {
+  onSubmit: (species1: string, species2: string, tssPosition: number) => void;
+};
 
-export default function TraceForm() {
+export default function TraceForm({ onSubmit }: TraceFormProps) {
   const [species1, setSpecies1] = useState("");
   const [species2, setSpecies2] = useState("");
+  const [tssPosition, setTssPosition] = useState(100);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Trace between:", species1, species2);
+    if (species1 && species2) {
+      onSubmit(species1, species2, tssPosition);
+    }
   };
 
   return (
-    <div className="">
+    <div>
       <form
         onSubmit={handleSubmit}
         className="space-y-8 z-10 flex flex-col items-center"
@@ -26,31 +27,39 @@ export default function TraceForm() {
         <div className="text-center">
           <h1 className="text-5xl font-semibold">Try Our Tool Now!</h1>
           <p className="text-lg text-gray-400">
-            Select from our database to see their compatibility
+            Enter species names manually to see their compatibility
           </p>
         </div>
 
-        {/* Species 1 */}
         <div className="w-full space-y-2">
           <Label htmlFor="species1" className="text-md">Species 1</Label>
-          <CustomSelect
+          <Textarea
             id="species1"
-            options={speciesOptions}
-            placeholder="Choose Your Species"
             value={species1}
-            onChange={setSpecies1}
+            onChange={(e) => setSpecies1(e.target.value)}
+            placeholder="Enter Species 1 Name"
           />
         </div>
 
-        {/* Species 2 */}
         <div className="w-full space-y-2">
           <Label htmlFor="species2" className="text-md">Species 2</Label>
-          <CustomSelect
+          <Textarea
             id="species2"
-            options={speciesOptions}
-            placeholder="Choose Your Species"
             value={species2}
-            onChange={setSpecies2}
+            onChange={(e) => setSpecies2(e.target.value)}
+            placeholder="Enter Species 2 Name"
+          />
+        </div>
+
+        <div className="w-full space-y-2">
+          <Label htmlFor="tssPosition" className="text-md">TSS Position (bp from start)</Label>
+          <input
+            id="tssPosition"
+            type="number"
+            min={0}
+            value={tssPosition}
+            onChange={(e) => setTssPosition(parseInt(e.target.value) || 0)}
+            className="w-full rounded-md border px-3 py-2"
           />
         </div>
 
