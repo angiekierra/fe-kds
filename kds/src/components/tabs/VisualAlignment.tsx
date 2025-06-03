@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge"
-import { type MotifMatch } from "@/utils/motifUtils"
+import type { MotifMatch } from "@/types/types"
 
 interface VisualAlignmentProps {
   seq1Motifs: MotifMatch[]

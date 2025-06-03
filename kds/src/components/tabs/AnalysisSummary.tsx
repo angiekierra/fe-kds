@@ -1,7 +1,7 @@
 // File: components/tabs/AnalysisSummary.tsx
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Dna, Brain, Target, AlertCircle } from "lucide-react"
-import { type AnalysisResult } from "@/utils/motifUtils"
+import type { AnalysisResult } from "@/types/types"
 
 interface AnalysisSummaryProps {
   analysis: AnalysisResult
