@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import TraceForm from "@/components/TraceForm";
 import MotifTabs from "@/components/motiftabs";
-import { type AnalysisResult, analyzeMotifSequences } from "@/utils/motifUtils";
+import { analyzeMotifSequences } from "@/utils/motifUtils";
+import type { AnalysisResult } from "@/types/types";
 
 export default function Tool() {
   const [showMotif, setShowMotif] = useState(false);
@@ -24,8 +25,6 @@ export default function Tool() {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
-      {/* Background & Form */}
-
       <div className="fixed top-0 right-0 h-full flex items-center justify-end pointer-events-none z-0">
         <img
           src="dna.png"
@@ -46,7 +45,6 @@ export default function Tool() {
         </div>
       </div>
 
-      {/* Motif Analysis Tabs */}
       {showMotif && analysis && (
         <div
           ref={motifRef}

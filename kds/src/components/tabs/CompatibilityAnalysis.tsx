@@ -1,6 +1,6 @@
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
-import { type MotifMatch } from "@/utils/motifUtils"
+import type { MotifMatch } from "@/types/types"
 
 interface CompatibilityAnalysisProps {
   seq1Motifs: MotifMatch[]

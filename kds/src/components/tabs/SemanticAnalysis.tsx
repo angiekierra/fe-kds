@@ -1,7 +1,7 @@
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Badge } from "@/components/ui/badge"
 import { Brain } from "lucide-react"
-import { type MotifMatch } from "@/utils/motifUtils"
+import type { MotifMatch } from "@/types/types"
 
 interface SemanticAnalysisProps {
   familyMatches: Record<string, string[]>

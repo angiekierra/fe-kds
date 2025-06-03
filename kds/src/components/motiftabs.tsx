@@ -1,9 +1,9 @@
 import { useState } from "react"
-import { type AnalysisResult } from "@/utils/motifUtils"
 import VisualAlignment from "./tabs/VisualAlignment"
 import SemanticAnalysis from "./tabs/SemanticAnalysis"
 import CompatibilityAnalysis from "./tabs/CompatibilityAnalysis"
 import AnalysisSummary from "./tabs/AnalysisSummary"
+import type { AnalysisResult } from "@/types/types"
 
 interface MotifTabsProps {
   analysis: AnalysisResult
