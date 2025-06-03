@@ -47,11 +47,11 @@ export default function CompatibilityAnalysis({
             const relativePos = motif.start - tssPosition
             const distance = Math.abs(relativePos - motif.canonical_position)
             return (
-              <div key={i} className="p-3 border rounded-lg">
+              <div key={i} className="p-3  border-1 border-gray-300 rounded-lg">
                 <div className="flex justify-between items-start mb-2">
                   <div>
                     <span className="font-medium">{motif.name}</span>
-                    <Badge variant="outline" className="ml-2">{motif.family}</Badge>
+                    <Badge variant="outline" className="ml-2 rounded-full border-gray-300">{motif.family}</Badge>
                   </div>
                   <div className={`font-medium ${getScoreColor(motif.compatibility_score)}`}>
                     {(motif.compatibility_score * 100).toFixed(0)}%
@@ -81,16 +81,6 @@ export default function CompatibilityAnalysis({
             )
           })}
         </div>
-      </div>
-
-      <div className="p-4 bg-gray-50 rounded-lg">
-        <h4 className="font-medium mb-2">Scoring Methodology</h4>
-        <ul className="text-sm space-y-1 text-gray-700">
-          <li>• <strong>Position-aware scoring:</strong> Motifs closer to canonical positions score higher</li>
-          <li>• <strong>Distance penalty:</strong> Score decreases with distance from optimal location</li>
-          <li>• <strong>Functional relevance:</strong> Only biologically relevant positions contribute to regulation</li>
-          <li>• <strong>TSS reference:</strong> All positions calculated relative to transcription start site</li>
-        </ul>
       </div>
     </div>
   )

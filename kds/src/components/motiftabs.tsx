@@ -26,7 +26,7 @@ export default function MotifTabs({ analysis, tssPosition }: MotifTabsProps) {
   const seq2Length = Math.max(...sequence2_motifs.map((m) => m.end + 1), 100)
 
   return (
-    <div className="bg-blue-50 rounded-md p-2 w-full max-w-6xl mx-auto">
+    <div className="bg-teal-50 rounded-md p-2 w-full max-w-6xl mx-auto">
       <div className="flex border-b border-gray-300">
         {["Visual Alignment", "Semantic Analysis", "Compatibility Score", "Summary"].map((tab) => (
           <button

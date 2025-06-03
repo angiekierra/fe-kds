@@ -27,7 +27,7 @@ export default function VisualAlignment({
         <svg width="100%" height="300" className="border rounded">
           {/* Sequence 1 Track */}
           <g transform="translate(50, 50)">
-            <text x="0" y="-10" className="text-sm font-medium fill-gray-700">
+            <text x="0" y="-10" className="text-sm font-medium fill-gray-700 mb-2">
               Sequence 1
             </text>
             <line x1={0} y1={0} x2={maxLength * scale} y2={0} stroke="#e5e7eb" strokeWidth={2} />
@@ -57,7 +57,7 @@ export default function VisualAlignment({
 
           {/* Sequence 2 Track */}
           <g transform="translate(50, 200)">
-            <text x="0" y="-10" className="text-sm font-medium fill-gray-700">
+            <text x="0" y="-10" className="text-sm font-medium fill-gray-700 mb-2">
               Sequence 2
             </text>
             <line x1={0} y1={0} x2={maxLength * scale} y2={0} stroke="#e5e7eb" strokeWidth={2} />
@@ -146,7 +146,7 @@ export default function VisualAlignment({
           </div>
         </div>
         <div>
-          <h4 className="font-medium mb-2">Sequence 2 Motifs ({seq2Motifs.length})</h4>
+          <h4 className="font-medium mb-">Sequence 2 Motifs ({seq2Motifs.length})</h4>
           <div className="space-y-1">
             {seq2Motifs.map((motif, i) => (
               <div key={i} className="flex items-center gap-2">
